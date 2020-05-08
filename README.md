@@ -20,6 +20,6 @@ To install this resource, simply install it just as you would any other resource
 
 ## Integrate Features
 
-### 1) Call Notification & Direction
+#### 1) Call Notification & Direction
 
 The Call Notification feature will notify you in-game when you are assigned to a new call and will provide you with the title and postal location. Accompanied by the CAD that will play an audible sound, you will now when you get a call and where you are supposed to go without even opening up the CAD! If the location is apart of our large database of locations around the map, you will be auto-waypointed to the location to begin responding to.
