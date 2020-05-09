@@ -1,8 +1,5 @@
---------------------------------------------------------
-------   DO NOT CHANGE THIS VALUE -----
 local cadURL = 'https://therocketcad.com/'
-------   Insert Server ID into this variable (Found in Owner Panel > FiveM Integration) ----- 
---------------------------------------------------------
+
 function findPed(hex)
     --print(hex)
     local players = GetPlayers()
