@@ -1,4 +1,5 @@
 local Blip1 = nil;
+local waitTime = 60000;
 
 RegisterCommand('dl', function(source, args)
     RemoveBlip(Blip1)
@@ -10,6 +11,19 @@ RegisterCommand("plate", function(source, args)
     local id = NetworkGetNetworkIdFromEntity(GetPlayerPed(-1))
     TriggerServerEvent("plateRunner", id, plate)
 end, false)
+
+-- USED FOR AUTO LOCATION
+Citizen.CreateThread(function()
+    while true do
+        local ped = GetPlayerPed(-1)
+        x, y, z = table.unpack(GetEntityCoords(ped, true))
+        lastStreet, lastCross = GetStreetNameAtCoord(x, y, z)
+        lastStreetName = GetStreetNameFromHashKey(lastStreet)
+        lastCrossStreet = GetStreetNameFromHashKey(lastCross)
+        TriggerServerEvent("autolocationUpdate", lastStreetName, lastCrossStreet, ped)
+        Citizen.Wait(waitTime)
+    end
+end)
 
 RegisterNetEvent("plateRunnerC")
 AddEventHandler("plateRunnerC", function(plateIn, model, flagID)
@@ -111,6 +125,16 @@ function deleteBlip(callX, callY)
             --print("Here3")
     end)
 end
+
+RegisterNetEvent("alert1")
+AddEventHandler("alert1", function()
+	drawNotification("CHAR_CALL911", 0, config.alert.alert1 , config.blip.name, "New Alert")
+end)
+
+RegisterNetEvent("alert2")
+AddEventHandler("alert2", function()
+    drawNotification("CHAR_CALL911", 0, config.alert.alert2 , config.blip.name, "New Alert")
+end)
 
 RegisterNetEvent("notify")
 AddEventHandler("notify", function(call, number)
