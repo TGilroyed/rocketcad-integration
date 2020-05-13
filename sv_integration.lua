@@ -7,7 +7,6 @@ AddEventHandler("autolocationUpdate", function(street, cross, pedin)
     local players = GetPlayers()
 
     for _, player in ipairs(players) do
-        print(player)
         local ped = GetPlayerPed(player)
         local identifiers = GetPlayerIdentifiers(player)
 
@@ -21,10 +20,9 @@ AddEventHandler("autolocationUpdate", function(street, cross, pedin)
             break
         end
     end
-    print(street, cross, steamIdentifier)
     PerformHttpRequest(cadURL.."/api/1.1/wf/fivem_locationping", function(err, text, headers)
     if text then
-         RconPrint("locationping API Response: \n"..text)
+         RconPrint("^3 " .. text .. "\n^0")
     end
 end, 'POST', json.encode({Street = street, Cross = cross, Hex = steamIdentifier}), { ["Content-Type"] = 'application/json' })
         CancelEvent()
@@ -34,7 +32,7 @@ RegisterServerEvent("plateRunner")
 AddEventHandler("plateRunner", function(source, plate)
     PerformHttpRequest(cadURL.."/api/1.1/wf/fivem_searchplate", function(err, text, headers)
     if text then
-        RconPrint("plate API Response: FOUND\n")
+        RconPrint("Successfully ran plate:" ..plate.. "\n")
         local data = json.decode(text)
         TriggerClientEvent("plateRunnerC", source, plate, data.response.Model, data.response.Flag_ID)
     end
