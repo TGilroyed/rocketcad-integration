@@ -29,6 +29,19 @@ AddEventHandler("autolocationUpdate", function(street, cross, pedin)
 end, 'POST', json.encode({Street = street, Cross = cross, Hex = steamIdentifier}), { ["Content-Type"] = 'application/json' })
         CancelEvent()
 end)
+
+RegisterServerEvent("plateRunner")
+AddEventHandler("plateRunner", function(source, plate)
+    PerformHttpRequest(cadURL.."/api/1.1/wf/fivem_searchplate", function(err, text, headers)
+    if text then
+        RconPrint("plate API Response: FOUND\n")
+        local data = json.decode(text)
+        TriggerClientEvent("plateRunnerC", source, plate, data.response.Model, data.response.Flag_ID)
+    end
+end, 'POST', json.encode({Code = config.settings.code, Plate = plate}), { ["Content-Type"] = 'application/json' })
+        CancelEvent()
+end)
+
 --------------
 
 -- USED FOR CAD CONNECT --
