@@ -22,13 +22,13 @@ Configuring the RocketCAD source is incredibly simple. Use the resources below t
 
 **You only need to edit the "config.lua" file, all other files will operate without editing!**
 
-# Settings
+#### Settings
 
 Name: The "name" setting is the name of your Communications Department. For example, "San Andreas Communications" or "Acme City Dispatch"
 
 Code: The "code" setting is your Unique ID of your community, this can ONLY be found under the Billing Center. Head to https://therocketcad.com/amc > Billing Center > Community ID and paste this in here.
 
-# Alert
+#### Alert
 
 Alert 1: The "alert1" setting is the title of your Emergency Traffic Only alert, this should match the alert title you have configured in your CAD already. For example, "Signal 100"
 
