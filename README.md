@@ -34,7 +34,7 @@ Alert 1: The "alert1" setting is the title of your Emergency Traffic Only alert,
 
 Alert 2: The "alert2" setting is the title of your Stop Transmitting alert, this should match the alert title you have configured in your CAD already. For example, "10-3"
 
-## Integrate Features
+## Integration Features
 
 #### 1) Call Notification & Directions
 
