@@ -16,6 +16,8 @@ To install this resource, simply install it just as you would any other resource
 4) Once configured, add "start rc-integration" to your server.cfg file
 5) Start your server and enjoy!
 
+*Renaming the resource will cause it to break, please do not modify it's name!*
+
 ## Configuration Guide
 
 Configuring the RocketCAD source is incredibly simple. Use the resources below to find quickly understand each option to get your server back up and running!
