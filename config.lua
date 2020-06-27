@@ -1,17 +1,18 @@
 
 config = {
-
     settings = {
       -- Name to be displayed at the top of the callout notifications
-      name= "Ottawa Communications Center",
+      name= "CHANGE ME",
       -- Community Code
-      code = "aIOho"
+      code = "CHANGE ME",
+      -- ServerId
+      serverId = "CHANGE ME"
     },
 
     alert = {
         -- Text to be displayed for Emergency Traffic Only Alert
-        alert1 = "Signal 100",
+        alert1 = "Emergency Traffic Only",
         -- Text to be displayed for Broadcast Alert
-        alert2 = "10-3"
+        alert2 = "Stop Transmitting"
     },
 }

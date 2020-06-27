@@ -1,6 +1,16 @@
 local Blip1 = nil;
 local waitTime = 60000;
 
+RegisterCommand('panic', function(source, args)
+    local ped = GetPlayerPed(-1)
+    x, y, z = table.unpack(GetEntityCoords(ped, true))
+    lastStreet, lastCross = GetStreetNameAtCoord(x, y, z)
+    lastStreetName = GetStreetNameFromHashKey(lastStreet)
+    lastCrossStreet = GetStreetNameFromHashKey(lastCross)
+    local ped1 = GetPlayerServerId(PlayerId())
+    TriggerServerEvent("panicPress", lastStreetName, lastCrossStreet, x, y, ped1, config.settings.serverId)
+end)
+
 RegisterCommand('dl', function(source, args)
     RemoveBlip(Blip1)
     Blip1= nil
@@ -9,18 +19,19 @@ end)
 RegisterCommand("plate", function(source, args)
     local plate = args[1]
     local id = NetworkGetNetworkIdFromEntity(GetPlayerPed(-1))
-    TriggerServerEvent("plateRunner", id, plate)
+    TriggerServerEvent("plateRunner", id, plate, config.settings.code)
 end, false)
 
 -- USED FOR AUTO LOCATION
 Citizen.CreateThread(function()
-    while true do
+    while true do 
         local ped = GetPlayerPed(-1)
         x, y, z = table.unpack(GetEntityCoords(ped, true))
         lastStreet, lastCross = GetStreetNameAtCoord(x, y, z)
         lastStreetName = GetStreetNameFromHashKey(lastStreet)
         lastCrossStreet = GetStreetNameFromHashKey(lastCross)
-        TriggerServerEvent("autolocationUpdate", lastStreetName, lastCrossStreet, ped)
+        local ped1 = GetPlayerServerId(PlayerId())
+        TriggerServerEvent("autolocationUpdate", lastStreetName, lastCrossStreet, ped1)
         Citizen.Wait(waitTime)
     end
 end)
@@ -67,7 +78,6 @@ end)
 
 RegisterNetEvent("drawRoute")
 AddEventHandler("drawRoute", function(x, y)
-        print(x,y)
         if(Blip1) then
             RemoveBlip(Blip1)
             Blip1= nil
@@ -128,12 +138,12 @@ end
 
 RegisterNetEvent("alert1")
 AddEventHandler("alert1", function()
-	drawNotification("CHAR_CALL911", 0, config.alert.alert1 , config.blip.name, "New Alert")
+	drawNotification("CHAR_CALL911", 0, config.alert.alert1 , config.settings.name, "New Alert")
 end)
 
 RegisterNetEvent("alert2")
 AddEventHandler("alert2", function()
-    drawNotification("CHAR_CALL911", 0, config.alert.alert2 , config.blip.name, "New Alert")
+    drawNotification("CHAR_CALL911", 0, config.alert.alert2 , config.settings.name, "New Alert")
 end)
 
 RegisterNetEvent("notify")
