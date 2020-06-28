@@ -42,18 +42,29 @@ AddEventHandler("plateRunnerC", function(plateIn, model, flagID)
     local flag = "~g~No Flags Found~g~"
     local insur = "~g~Insured~g~"
     local regis = "~g~Registered~g~"
-    local isClear = 0;
-    for key,value in pairs(flagID) do
-        if value == 1 then
-            isClear = 1
-            flag = "~g~No Flags Found~g~"
-        elseif value == 2 then
-            insur = "~o~No Insurance~o~"
-        elseif value == 3 then
-            regis = "~o~No Registration~o~"
-        elseif value == 4 then
-            flag = "~r~Stolen~r~"
+    local isClear = -1
+    if flagID ~= nil then
+        for key,value in pairs(flagID) do
+            if value == 1 then
+                isClear = 1
+                flag = "~g~No Flags Found~g~"
+            elseif value == 2 then
+                isClear = 0
+                insur = "~o~No Insurance~o~"
+            elseif value == 3 then
+                isClear = 0
+                regis = "~o~No Registration~o~"
+            elseif value == 4 then
+                isClear = 0
+                flag = "~r~Stolen~r~"
+            end
         end
+    end
+    
+    if isClear == -1 then
+        temp = "~r~PLATE NOT FOUND~r~ ~w~: " ..plate .. "~w~\n"
+        drawNotification("CHAR_CALL911", 0, temp , config.settings.name, "RocketCAD")
+        return
     end
 
     tempModel = "~w~MODEL : ~w~" .. "~b~"..model.. "~b~"
@@ -63,7 +74,7 @@ AddEventHandler("plateRunnerC", function(plateIn, model, flagID)
     if isClear == 1 then
         temp = tempPlate .. "\n" .. tempModel .. "\n" .. tempFlag
         drawNotification("CHAR_CALL911", 0, temp , config.settings.name, "RocketCAD")
-    else
+    elseif isClear == 0 then
         tempRegis = "~w~REGISTRATION : ~w~" .. regis
         tempInsur = "~w~INSURANCE : ~w~" .. insur
         temp = tempPlate .. "\n" .. tempModel
