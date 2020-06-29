@@ -18,6 +18,14 @@ end)
 
 RegisterCommand("plate", function(source, args)
     local plate = args[1]
+    if args[1] == nil then
+        TriggerEvent("chat:addMessage", {
+            color = {255, 0, 0},
+            multiline = true,
+            args = { "Plate Runner", "/plate needs a plate" }
+        })
+        return
+    end
     local id = NetworkGetNetworkIdFromEntity(GetPlayerPed(-1))
     TriggerServerEvent("plateRunner", id, plate, config.settings.code)
 end, false)
@@ -62,7 +70,7 @@ AddEventHandler("plateRunnerC", function(plateIn, model, flagID)
     end
     
     if isClear == -1 then
-        temp = "~r~PLATE NOT FOUND~r~ ~w~: " ..plate .. "~w~\n"
+        temp = "~r~PLATE NOT FOUND IN CAD DATABASE~r~ ~w~: " ..plate .. "~w~\n"
         drawNotification("CHAR_CALL911", 0, temp , config.settings.name, "RocketCAD")
         return
     end
@@ -85,6 +93,12 @@ AddEventHandler("plateRunnerC", function(plateIn, model, flagID)
         AddTextComponentString(temp1)
         DrawNotification(false, true)
     end
+end)
+
+RegisterNetEvent("plateRunnerERR")
+AddEventHandler("plateRunnerERR", function()
+    temp = "~r~An Error Occured Trying To Connect To CAD Database~r~" .. "\n"
+    drawNotification("CHAR_CALL911", 0, temp , config.settings.name, "RocketCAD")
 end)
 
 RegisterNetEvent("drawRoute")
