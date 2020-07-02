@@ -16,6 +16,15 @@ To install this resource, simply install it just as you would any other resource
 4) Once configured, add "start rc-integration" to your server.cfg file
 5) Start your server and enjoy!
 
+## Whitelist Installation Instructions
+
+1) The "rc-whitelist" resource is included in your primary server resource.
+2) Move the "rc-whitelist" folder out into your /resources/ directory
+3) Add **start rc-whitelist** to your server.cfg file
+4) Head into the "config.lua" file inside of the resource
+5) Enter in your Community ID into the field provided, this is located on the "integrate" page of RocketCAD
+6) You are done! The CAD will now check users to see if they are apart of your community before letting them into your server.
+
 ## Configuration Guide
 
 Configuring the RocketCAD source is incredibly simple. Use the resources below to find quickly understand each option to get your server back up and running!
