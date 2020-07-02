@@ -1,6 +1,16 @@
 local Blip1 = nil;
 local waitTime = 60000;
 
+RegisterCommand('911', function(source, args)
+    local ped = GetPlayerPed(-1)
+    x, y, z = table.unpack(GetEntityCoords(ped, true))
+    lastStreet, lastCross = GetStreetNameAtCoord(x, y, z)
+    lastStreetName = GetStreetNameFromHashKey(lastStreet)
+    lastCrossStreet = GetStreetNameFromHashKey(lastCross)
+    local ped1 = GetPlayerServerId(PlayerId())
+    TriggerServerEvent("911Alert", lastStreetName, lastCrossStreet, ped1, config.settings.serverId)
+end)
+
 RegisterCommand('panic', function(source, args)
     local ped = GetPlayerPed(-1)
     x, y, z = table.unpack(GetEntityCoords(ped, true))
@@ -8,7 +18,7 @@ RegisterCommand('panic', function(source, args)
     lastStreetName = GetStreetNameFromHashKey(lastStreet)
     lastCrossStreet = GetStreetNameFromHashKey(lastCross)
     local ped1 = GetPlayerServerId(PlayerId())
-    TriggerServerEvent("panicPress", lastStreetName, lastCrossStreet, x, y, ped1, config.settings.serverId)
+    TriggerServerEvent("panicPress", lastStreetName, lastCrossStreet, tostring(x), tostring(y), ped1, config.settings.serverId)
 end)
 
 RegisterCommand('dl', function(source, args)
@@ -26,7 +36,7 @@ RegisterCommand("plate", function(source, args)
         })
         return
     end
-    local id = NetworkGetNetworkIdFromEntity(GetPlayerPed(-1))
+    local id = GetPlayerServerId(PlayerId())
     TriggerServerEvent("plateRunner", id, plate, config.settings.code)
 end, false)
 
@@ -55,7 +65,7 @@ AddEventHandler("plateRunnerC", function(plateIn, model, flagID)
         for key,value in pairs(flagID) do
             if value == 1 then
                 isClear = 1
-                flag = "~g~No Flags Found~g~"
+                flag = "~g~No Flags~g~"
             elseif value == 2 then
                 isClear = 0
                 insur = "~o~No Insurance~o~"
@@ -117,12 +127,10 @@ AddEventHandler("drawRoute", function(x, y)
 		AddTextComponentSubstringPlayerName("Current Call")
         EndTextCommandSetBlipName(Blip1)
         deleteBlip(x, y)
-        --print("Here2")
 end)
 
 RegisterNetEvent("drawRoutePanic")
 AddEventHandler("drawRoutePanic", function(x, y)
-        --print(x,y)
         if(Blip1) then
             RemoveBlip(Blip1)
             Blip1= nil
@@ -137,13 +145,10 @@ AddEventHandler("drawRoutePanic", function(x, y)
 		AddTextComponentSubstringPlayerName("Panic Alert")
         EndTextCommandSetBlipName(Blip1)
         deleteBlip(x, y)
-        --print("Here2")
 end)
 
 function deleteBlip(callX, callY)
     Citizen.CreateThread(function()
-        --print(callX, callY)
-        --print("Here1")
             while Blip1 do
                 local x, y = table.unpack(GetEntityCoords(GetPlayerPed(-1)))
                 -- if blip exists
@@ -157,7 +162,6 @@ function deleteBlip(callX, callY)
                 end
                 Wait(100)
             end
-            --print("Here3")
     end)
 end
 
@@ -181,7 +185,7 @@ end)
 
 RegisterNetEvent("notifyPanic")
 AddEventHandler("notifyPanic", function(call, number)
-        tempNum = "~w~ Cst. " .. number .. "~w~"
+        tempNum = "~w~" .. number .. "~w~"
         tempCall = "~w~ ".. call .. "~w~"
         temp = "~r~Panic Button Pressed By~r~ " .. tempNum .. tempCall
 		drawNotification("CHAR_CALL911", 0, temp , config.settings.name, "RocketCAD")

@@ -1,11 +1,28 @@
 local cadURL = 'https://therocketcad.com/'
 
+-- USED FOR 911 Alert --
+RegisterServerEvent("911Alert")
+AddEventHandler("911Alert", function(street, cross, pedin, serverid)
+    local steamIdentifier
+    steamIdentifier = PlayerIdentifier('steam', pedin)
+    local name = GetPlayerName(pedin)
+    PerformHttpRequest(cadURL.."/api/1.1/wf/fivem_911alert", function(err, text, headers)
+    if text then
+        RconPrint("Successfully 911 alert by " ..name.. "\n")
+    elseif err then
+        RconPrint("911 alert Error " .. err .. "\n")
+    end
+end, 'POST', json.encode({Name = name, Street = street, Cross = cross, ServerId = serverid}), { ["Content-Type"] = 'application/json' })
+        CancelEvent()
+end)
+
+-- USED FOR PANIC BUTTON --
 RegisterServerEvent("panicPress")
 AddEventHandler("panicPress", function(street, cross, x, y, pedin, serverid)
     local steamIdentifier
     steamIdentifier = PlayerIdentifier('steam', pedin)
     local name = GetPlayerName(pedin)
-    PerformHttpRequest(cadURL.."/api/1.1/wf/new_panic", function(err, text, headers)
+    PerformHttpRequest(cadURL.."/api/1.1/wf/fivem_panicalert", function(err, text, headers)
     if text then
         RconPrint("Successfully paniced " .. name .. "at " .. street .. "\n")
     elseif err then
@@ -54,9 +71,6 @@ AddEventHandler("plateRunner", function(source, plate, code)
         RconPrint("Successfully ran plate:" ..plate.. "\n")
         local data = json.decode(text)
         TriggerClientEvent("plateRunnerC", source, plate, data.response.Model, data.response.Flag_ID)
-    elseif err then
-        RconPrint("Plate Runner Error: " .. err .. "\n")
-        TriggerClientEvent("plateRunnerERR", source)
     end
 end, 'POST', json.encode({Code = code, Plate = plate}), { ["Content-Type"] = 'application/json' })
         CancelEvent()
