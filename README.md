@@ -37,7 +37,7 @@ Name: The "name" setting is the name of your Communications Department. For exam
 
 Community Code: The "code" setting is your Unique ID of your community, this can ONLY be found under the Billing Center. Head to https://therocketcad.com/amc > Billing Center > Community ID and paste this in here.
 
-Server ID: The "serverid" setting is the ID for the specific server you're placing the resource in. This is found under the Owner Panel > FiveM Integration tab.
+Server ID: The "serverid" setting is the ID for the specific server you're placing the resource in. This is found under the Owner Panel > API Access tab.
 
 #### Alert
 
