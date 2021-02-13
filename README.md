@@ -35,7 +35,7 @@ Configuring the RocketCAD source is incredibly simple. Use the resources below t
 
 Name: The "name" setting is the name of your Communications Department. For example, "San Andreas Communications" or "Acme City Dispatch"
 
-Community Code: The "code" setting is your Unique ID of your community, this can ONLY be found under the Billing Center. Head to https://therocketcad.com/amc > Billing Center > Community ID and paste this in here.
+Community Code: The "code" setting is your Unique ID of your community, this is available from https://therocketcad.com/integrate > [Select Community] > "Your Community ID"
 
 Server ID: The "serverid" setting is the ID for the specific server you're placing the resource in. This is found under the Owner Panel > API Access tab.
 
