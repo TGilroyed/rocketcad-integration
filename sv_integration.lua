@@ -70,7 +70,7 @@ AddEventHandler("plateRunner", function(source, plate, code)
     if text then
         RconPrint("Successfully ran plate:" ..plate.. "\n")
         local data = json.decode(text)
-        TriggerClientEvent("plateRunnerC", source, plate, data.response.Model, data.response.Flag_ID)
+        TriggerClientEvent("plateRunnerC", source, plate, data.response.Model, data.response.Flag_ID, data.response.RegOwner)
     end
 end, 'POST', json.encode({Code = code, Plate = plate}), { ["Content-Type"] = 'application/json' })
         CancelEvent()
