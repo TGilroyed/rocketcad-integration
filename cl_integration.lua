@@ -49,7 +49,7 @@ Citizen.CreateThread(function()
         lastStreetName = GetStreetNameFromHashKey(lastStreet)
         lastCrossStreet = GetStreetNameFromHashKey(lastCross)
         local ped1 = GetPlayerServerId(PlayerId())
-        TriggerServerEvent("autolocationUpdate", lastStreetName, lastCrossStreet, ped1)
+        TriggerServerEvent("autolocationUpdate", lastStreetName, lastCrossStreet, ped1, apikey)
         Citizen.Wait(waitTime)
     end
 end)
