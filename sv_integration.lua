@@ -38,7 +38,7 @@ RegisterServerEvent("autolocationUpdate")
 AddEventHandler("autolocationUpdate", function(street, cross, pedin)
     local steamIdentifier
     steamIdentifier = PlayerIdentifier('steam', pedin)
-    PerformHttpRequest(cadURL.."/api/1.1/wf/fivem_locationping", function(err, text, headers)
+    PerformHttpRequest(cadURL.."/api/1.1/wf/locationping?"apikey, function(err, text, headers)
     if text then
          RconPrint("locationping API Response: "..text.."\n")
     elseif err then
