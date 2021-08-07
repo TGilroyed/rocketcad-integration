@@ -12,7 +12,7 @@ AddEventHandler("911Alert", function(street, cross, pedin, serverid, apikey)
     elseif err then
         RconPrint("911 alert Error " .. err .. "\n")
     end
-end, 'POST', json.encode({Name = name, Street = street, Cross = cross, ServerId = serverid}), { ["Content-Type"] = 'application/json' })
+end, 'POST', json.encode({Name = name, Street = street, Cross = cross, ServerID = serverid}), { ["Content-Type"] = 'application/json' })
         CancelEvent()
 end)
 
@@ -29,7 +29,7 @@ AddEventHandler("panicPress", function(street, cross, x, y, pedin, serverid, api
         RconPrint("Panic Error " .. err .. "\n")
     end
 end, 'POST', json.encode({Name = name, Hex = steamIdentifier, callX = x, callY = y, Street = street,
-Cross = cross, ServerId = serverid}), { ["Content-Type"] = 'application/json' })
+Cross = cross, ServerID = serverid}), { ["Content-Type"] = 'application/json' })
         CancelEvent()
 end)
 
