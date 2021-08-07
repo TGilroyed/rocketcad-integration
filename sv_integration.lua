@@ -1,12 +1,12 @@
-local cadURL = 'https://therocketcad.com/'
+local cadURL = 'https://api.therocketcad.com/'
 
 -- USED FOR 911 Alert --
 RegisterServerEvent("911Alert")
-AddEventHandler("911Alert", function(street, cross, pedin, serverid)
+AddEventHandler("911Alert", function(street, cross, pedin, serverid, apikey)
     local steamIdentifier
     steamIdentifier = PlayerIdentifier('steam', pedin)
     local name = GetPlayerName(pedin)
-    PerformHttpRequest(cadURL.."/api/1.1/wf/fivem_911alert", function(err, text, headers)
+    PerformHttpRequest(cadURL.."/api/1.1/wf/911?"apikey, function(err, text, headers)
     if text then
         RconPrint("Successfully 911 alert by " ..name.. "\n")
     elseif err then
@@ -18,11 +18,11 @@ end)
 
 -- USED FOR PANIC BUTTON --
 RegisterServerEvent("panicPress")
-AddEventHandler("panicPress", function(street, cross, x, y, pedin, serverid)
+AddEventHandler("panicPress", function(street, cross, x, y, pedin, serverid, apikey)
     local steamIdentifier
     steamIdentifier = PlayerIdentifier('steam', pedin)
     local name = GetPlayerName(pedin)
-    PerformHttpRequest(cadURL.."/api/1.1/wf/fivem_panicalert", function(err, text, headers)
+    PerformHttpRequest(cadURL.."/api/1.1/wf/panic?"apikey, function(err, text, headers)
     if text then
         RconPrint("Successfully paniced " .. name .. "at " .. street .. "\n")
     elseif err then
