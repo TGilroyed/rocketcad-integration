@@ -37,7 +37,7 @@ Community Code: The "code" setting is your Unique ID of your community, this is 
 
 Server ID: The "serverid" setting is the ID for the specific server you're placing the resource in. This is found under the Owner Panel > API Access tab.
 
-### Alert
+##### Alert
 
 Alert 1: The "alert1" setting is the title of your Emergency Traffic Only alert, this should match the alert title you have configured in your CAD already. For example, "Signal 100"
 
