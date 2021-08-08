@@ -1,5 +1,5 @@
 local Blip1 = nil;
-local waitTime = 60000;
+local waitTime = 30000;
 
 RegisterCommand('911', function(source, args)
     local ped = GetPlayerPed(-1)
@@ -8,7 +8,7 @@ RegisterCommand('911', function(source, args)
     lastStreetName = GetStreetNameFromHashKey(lastStreet)
     lastCrossStreet = GetStreetNameFromHashKey(lastCross)
     local ped1 = GetPlayerServerId(PlayerId())
-    TriggerServerEvent("911Alert", lastStreetName, lastCrossStreet, ped1, config.settings.serverId, config.settings.apikey)
+    TriggerServerEvent("911Alert", lastStreetName, lastCrossStreet, ped1, config.settings.serverId)
 end)
 
 RegisterCommand('panic', function(source, args)
@@ -18,7 +18,7 @@ RegisterCommand('panic', function(source, args)
     lastStreetName = GetStreetNameFromHashKey(lastStreet)
     lastCrossStreet = GetStreetNameFromHashKey(lastCross)
     local ped1 = GetPlayerServerId(PlayerId())
-    TriggerServerEvent("panicPress", lastStreetName, lastCrossStreet, tostring(x), tostring(y), ped1, config.settings.serverId, config.settings.apikey)
+    TriggerServerEvent("panicPress", lastStreetName, lastCrossStreet, tostring(x), tostring(y), ped1, config.settings.serverId)
 end)
 
 RegisterCommand('dl', function(source, args)
@@ -42,14 +42,14 @@ end, false)
 
 -- USED FOR AUTO LOCATION
 Citizen.CreateThread(function()
-    while true do 
+    while true do
         local ped = GetPlayerPed(-1)
         x, y, z = table.unpack(GetEntityCoords(ped, true))
         lastStreet, lastCross = GetStreetNameAtCoord(x, y, z)
         lastStreetName = GetStreetNameFromHashKey(lastStreet)
         lastCrossStreet = GetStreetNameFromHashKey(lastCross)
         local ped1 = GetPlayerServerId(PlayerId())
-        TriggerServerEvent("autolocationUpdate", lastStreetName, lastCrossStreet, ped1, apikey)
+        TriggerServerEvent("autolocationUpdate", lastStreetName, lastCrossStreet, ped1)
         Citizen.Wait(waitTime)
     end
 end)
@@ -78,7 +78,7 @@ AddEventHandler("plateRunnerC", function(plateIn, model, flagID)
             end
         end
     end
-    
+
     if isClear == -1 then
         temp = "~r~PLATE NOT FOUND IN CAD DATABASE~r~ ~w~: " ..plate .. "~w~\n"
         drawNotification("CHAR_CALL911", 0, temp , config.settings.name, "RocketCAD")
