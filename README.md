@@ -29,9 +29,7 @@ To install this resource, simply install it just as you would any other resource
 
 Configuring the RocketCAD source is incredibly simple. Use the resources below to find quickly understand each option to get your server back up and running!
 
-**You only need to edit the "config.lua" file, all other files will operate without editing!**
-
-#### Settings
+#### config.lua Configuration
 
 Name: The "name" setting is the name of your Communications Department. For example, "San Andreas Communications" or "Acme City Dispatch"
 
@@ -39,11 +37,17 @@ Community Code: The "code" setting is your Unique ID of your community, this is 
 
 Server ID: The "serverid" setting is the ID for the specific server you're placing the resource in. This is found under the Owner Panel > API Access tab.
 
-#### Alert
+### Alert
 
-Alert 1: The "alert1" setting is the title of your Emergency Traffic Only alert, this should match the alert title you have configured in your CAD already. For example, "Signal 100"
+API Key: The "api key" config option is the API Key you wish to use with this server. This can be generated from the Owner Panel > API Access tab.
 
-Alert 2: The "alert2" setting is the title of your Stop Transmitting alert, this should match the alert title you have configured in your CAD already. For example, "10-3"
+#### sv-integration.lua Configuration
+
+Name: The "name" setting is the name of your Communications Department. For example, "San Andreas Communications" or "Acme City Dispatch"
+
+Community Code: The "code" setting is your Unique ID of your community, this is available from https://therocketcad.com/integrate > [Select Community] > "Your Community ID"
+
+Server ID: The "serverid" setting is the ID for the specific server you're placing the resource in. This is found under the Owner Panel > API Access tab.
 
 ## Integration Features
 
