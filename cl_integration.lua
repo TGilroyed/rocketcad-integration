@@ -1,5 +1,5 @@
 local Blip1 = nil;
-local waitTime = 30000;
+local waitTime = 15000;
 
 RegisterCommand('911', function(source, args)
     local ped = GetPlayerPed(-1)
