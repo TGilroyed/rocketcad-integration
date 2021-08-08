@@ -39,15 +39,13 @@ Server ID: The "serverid" setting is the ID for the specific server you're placi
 
 ### Alert
 
-API Key: The "api key" config option is the API Key you wish to use with this server. This can be generated from the Owner Panel > API Access tab.
+Alert 1: The "alert1" setting is the title of your Emergency Traffic Only alert, this should match the alert title you have configured in your CAD already. For example, "Signal 100"
+
+Alert 2: The "alert2" setting is the title of your Stop Transmitting alert, this should match the alert title you have configured in your CAD already. For example, "10-3"
 
 #### sv-integration.lua Configuration
 
-Name: The "name" setting is the name of your Communications Department. For example, "San Andreas Communications" or "Acme City Dispatch"
-
-Community Code: The "code" setting is your Unique ID of your community, this is available from https://therocketcad.com/integrate > [Select Community] > "Your Community ID"
-
-Server ID: The "serverid" setting is the ID for the specific server you're placing the resource in. This is found under the Owner Panel > API Access tab.
+API Key: The "api key" config option is the API Key you wish to use with this server. This can be generated from the Owner Panel > API Access tab.
 
 ## Integration Features
 
