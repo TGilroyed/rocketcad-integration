@@ -15,7 +15,7 @@ steamIdentifier = PlayerIdentifier('steam', pedin)
 local name = GetPlayerName(pedin)
 PerformHttpRequest(cadURL.."/api/1.1/wf/911?api_key="..config.settings.apikey, function(err, text, headers)
 if text then
-   RconPrint("Successfully 911 alert! Response: " ..text.. "\n")
+   RconPrint("Successfully 911 alert! " .. name .. "at " .. street .. "\n")
 elseif err then
    RconPrint("911 alert Error " .. err .. "\n")
 end
@@ -31,7 +31,7 @@ steamIdentifier = PlayerIdentifier('steam', pedin)
 local name = GetPlayerName(pedin)
 PerformHttpRequest(cadURL.."/api/1.1/wf/panic?api_key="..config.settings.apikey, function(err, text, headers)
 if text then
-   RconPrint("Successfully paniced " .. name .. "at " .. street .. "\n")
+   RconPrint("Successfully Panic alert! " .. name .. "at " .. street .. "\n")
 elseif err then
    RconPrint("Panic Error " .. err .. "\n")
 end
@@ -46,7 +46,7 @@ local steamIdentifier
 steamIdentifier = PlayerIdentifier('steam', pedin)
 PerformHttpRequest(cadURL.."/api/1.1/wf/locationping?api_key="..config.settings.apikey, function(err, text, headers)
 if text then
-   RconPrint("locationping API Response: "..text.."\n")
+   RconPrint("Successfully Location Ping " .. steamIdentifier .. "at " .. street .. "\n")
 elseif err then
    RconPrint("Location Ping Error " .. err .. "\n")
 end
