@@ -56,10 +56,12 @@ end)
 
 RegisterNetEvent("plateRunnerC")
 AddEventHandler("plateRunnerC", function(plateIn, model, flagID)
+--AddEventHandler("plateRunnerC", function(plateIn, model, flagID, RegOwner)
     local plate = string.upper(plateIn)
     local flag = "~g~No Flags Found~g~"
     local insur = "~g~Insured~g~"
     local regis = "~g~Registered~g~"
+	--local owner = string.upper(RegOwner)
     local isClear = -1
     if flagID ~= nil then
         for key,value in pairs(flagID) do
@@ -85,11 +87,13 @@ AddEventHandler("plateRunnerC", function(plateIn, model, flagID)
         return
     end
 
+	--tempOwner = "~w~OWNER : ~w~" .. "~b~"..owner.. "~b~"
     tempModel = "~w~MODEL : ~w~" .. "~b~"..model.. "~b~"
     tempPlate = "~w~PLATE : ~w~" .. "~b~"..plate.. "~b~"
     tempFlag = "~w~FLAGS : ~w~" .. flag
 
     if isClear == 1 then
+	--temp = tempPlate .. "\n" .. tempModel .. "\n" .. tempFlag .. "\n" .. tempOwner
         temp = tempPlate .. "\n" .. tempModel .. "\n" .. tempFlag
         drawNotification("CHAR_CALL911", 0, temp , config.settings.name, "RocketCAD")
     elseif isClear == 0 then
