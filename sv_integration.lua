@@ -1,5 +1,4 @@
 local cadURL = 'https://api.therocketcad.com'
-local cadURLtemp = 'https://therocketcad.com'
 
 local config = {
    settings = {
@@ -73,14 +72,12 @@ end
 
 RegisterServerEvent("plateRunner")
 AddEventHandler("plateRunner", function(source, plate, code)
---    PerformHttpRequest(cadURL.."/api/1.1/wf/fivem_searchplate", function(err, text, headers)
-      PerformHttpRequest(cadURLtemp.."/api/1.1/wf/fivem_searchplate", function(err, text, headers)
-    if text then
-        RconPrint("Successfully ran plate:" ..plate.. "\n")
-        local data = json.decode(text)
-        TriggerClientEvent("plateRunnerC", source, plate, data.response.Model, data.response.Flag_ID)
-        --TriggerClientEvent("plateRunnerC", source, plate, data.response.Model, data.response.Flag_ID, data.response.RegOwner)
-    end
+PerformHttpRequest(cadURL.."/api/1.1/wf/fivem_searchplate", function(err, text, headers)
+if text then
+   RconPrint("Successfully ran plate:" ..plate.. "\n")
+   local data = json.decode(text)
+   TriggerClientEvent("plateRunnerC", source, plate, data.response.Model, data.response.Flag_ID)
+end
 end, 'POST', json.encode({Code = code, Plate = plate}), { ["Content-Type"] = 'application/json' })
 CancelEvent()
 end)
