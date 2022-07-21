@@ -6,6 +6,7 @@ description "RocketCAD Integration resource for FiveM Servers"
 author "Modern Solutions"
 version "1.1.1"
 
+
 server_script {
     "sv_integration.lua",
     "sv_version.lua"
@@ -15,4 +16,3 @@ client_script {
     "cl_integration.lua",
     "config.lua"
 }
-

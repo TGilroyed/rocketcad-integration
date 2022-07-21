@@ -3,9 +3,9 @@ config = {
     settings = {
       -- Name to be displayed at the top of the callout notifications
       name= "CHANGE ME",
-      -- Community Code
+      -- Community Code from therocketcad.com/integrate
       code = "CHANGE ME",
-      -- ServerId
+      -- ServerId from Owner Panel > API Access
       serverId = "CHANGE ME"
     },
 

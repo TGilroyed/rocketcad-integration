@@ -1,5 +1,5 @@
 local Blip1 = nil;
-local waitTime = 60000;
+local waitTime = 15000;
 
 RegisterCommand('911', function(source, args)
     local ped = GetPlayerPed(-1)
@@ -42,7 +42,7 @@ end, false)
 
 -- USED FOR AUTO LOCATION
 Citizen.CreateThread(function()
-    while true do 
+    while true do
         local ped = GetPlayerPed(-1)
         x, y, z = table.unpack(GetEntityCoords(ped, true))
         lastStreet, lastCross = GetStreetNameAtCoord(x, y, z)
@@ -79,7 +79,7 @@ AddEventHandler("plateRunnerC", function(plateIn, model, flagID, RegOwner)
             end
         end
     end
-    
+
     if isClear == -1 then
         temp = "~r~PLATE NOT FOUND IN CAD DATABASE~r~ ~w~: " ..plate .. "~w~\n"
         drawNotification("CHAR_CALL911", 0, temp , config.settings.name, "RocketCAD")
