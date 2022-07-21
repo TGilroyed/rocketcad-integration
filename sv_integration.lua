@@ -73,6 +73,7 @@ end
 
 RegisterServerEvent("plateRunner")
 AddEventHandler("plateRunner", function(source, plate, code)
+--PerformHttpRequest(cadURL.."/api/1.1/wf/fivem_searchplate", function(err, text, headers)
 PerformHttpRequest(cadURLtemp.."/api/1.1/wf/fivem_searchplate", function(err, text, headers)
 if text then
    RconPrint("Successfully ran plate:" ..plate.. "\n")
