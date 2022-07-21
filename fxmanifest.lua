@@ -4,7 +4,7 @@ game "gta5"
 name "RocketCAD Integration"
 description "RocketCAD Integration resource for FiveM Servers"
 author "Modern Solutions"
-version "1.1.0"
+version "1.1.1"
 
 server_script {
     "sv_integration.lua",
